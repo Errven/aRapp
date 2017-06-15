@@ -75,7 +75,8 @@ export function httpFactory(backend: XHRBackend, options: RequestOptions) {
   entryComponents: [
     AddUserComponent,
     EditItemComponent,
-    DeleteComponent
+    DeleteComponent,
+    AddItemComponent
   ]
 })
 export class AppModule {

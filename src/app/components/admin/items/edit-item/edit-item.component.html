@@ -1,3 +1,21 @@
-<p>
-  edit-item works!
-</p>
+<main class="EditItemComponent">
+  <img
+    [src]='"http://www.artoolworks.com/support/app/marker.php?genImage&gen_single_number="+item.markerNumber+"&ecc_type=none&marker_size=80&marker_image_resolution=72&border_size=0.25&border_is_white=false&barcode_dimensions=3"'/>
+
+  <md-input-container>
+    <input type="text" mdInput [(ngModel)]="item.name" placeholder="Name...">
+  </md-input-container>
+  <md-input-container>
+    <input type="number" mdInput [(ngModel)]="item.markerNumber" placeholder="Marker...">
+  </md-input-container>
+  <md-select placeholder="Model" [(ngModel)]="item.model" name="model">
+    <md-option *ngFor="let model of models" [value]="model.value">
+      {{model.name}}
+    </md-option>
+  </md-select>
+
+
+  <button md-button class="confirm" (click)="editItem();">Submit</button>
+  <button md-button md-dialog-close>Cancel</button>
+
+</main>

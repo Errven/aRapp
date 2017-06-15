@@ -7,7 +7,7 @@ import {Http} from "@angular/http";
 export class DataService {
 
   url = {
-    items: 'https://pacific-ocean-71911.herokuapp.com/login',
+    items: 'https://pacific-ocean-71911.herokuapp.com/items',
     users: 'https://pacific-ocean-71911.herokuapp.com/users'
   };
 
@@ -26,5 +26,22 @@ export class DataService {
 
   addUser(user) {
     return this.http.post(this.url.users, user);
+  }
+
+  getItems(): Observable<any> {
+    return this.http.get(this.url.items).map(res => res.json())
+  }
+
+  deleteItems(itemId){
+    console.log(this.url.users+'/'+itemId);
+    return this.http.delete(this.url.items+'/'+itemId);
+  }
+
+  addItems(item) {
+    return this.http.post(this.url.items, item);
+  }
+
+  editItems(item) {
+    return this.http.put(this.url.items, item);
   }
 }

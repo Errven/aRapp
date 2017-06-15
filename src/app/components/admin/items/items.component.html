@@ -1,6 +1,6 @@
 <section class="ItemsComponent">
   <h2>Items list
-    <button md-mini-fab mdTooltip="Add new item">
+    <button (click)="addItems()" md-mini-fab mdTooltip="Add new item">
       <md-icon md-list-icon>add</md-icon>
     </button>
   </h2>
@@ -10,54 +10,30 @@
       <thead>
       <tr>
         <th>Name</th>
-        <th>Description</th>
+        <th>Marker</th>
         <th>Model</th>
         <th class="right">Edit</th>
         <th class="right">Delete</th>
       </tr>
       </thead>
-      <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+      <tbody *ngIf="items">
+      <tr *ngFor="let item of items">
+        <td>{{item.name}}</td>
         <td>
-          <button md-button mdTooltip="Edit item">
-            <md-icon md-list-icon>edit</md-icon>
+          <a target="_blank" [href]='"http://www.artoolworks.com/support/app/marker.php?genImage&gen_single_number="+item.markerNumber+"&ecc_type=none&marker_size=80&marker_image_resolution=72&border_size=0.25&border_is_white=false&barcode_dimensions=3"'>
+            <img
+              [src]='"http://www.artoolworks.com/support/app/marker.php?genImage&gen_single_number="+item.markerNumber+"&ecc_type=none&marker_size=80&marker_image_resolution=72&border_size=0.25&border_is_white=false&barcode_dimensions=3"'>
+            {{item.markerNumber}}
+          </a>
+        </td>
+        <td>{{item.model}}</td>
+        <td>
+          <button md-button mdTooltip="Edit item" (click)="editItems(item);">
+            <md-icon md-list-icon>info</md-icon>
           </button>
         </td>
         <td>
-          <button md-button mdTooltip="Delete item">
-            <md-icon md-list-icon>delete</md-icon>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-        <td>
-          <button md-button mdTooltip="Edit item">
-            <md-icon md-list-icon>edit</md-icon>
-          </button>
-        </td>
-        <td>
-          <button md-button mdTooltip="Delete item">
-            <md-icon md-list-icon>delete</md-icon>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td>
-          <button md-button mdTooltip="Edit item">
-            <md-icon md-list-icon>edit</md-icon>
-          </button>
-        </td>
-        <td>
-          <button md-button mdTooltip="Delete item">
+          <button md-button mdTooltip="Delete item" (click)="deleteItem(item.itemId)">
             <md-icon md-list-icon>delete</md-icon>
           </button>
         </td>
