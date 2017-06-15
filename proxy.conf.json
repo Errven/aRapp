@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://stormy-ocean-60188.herokuapp.com/",
+    "target": "https://pacific-ocean-71911.herokuapp.com",
     "changeOrigin": true,
     "secure": false,
     "logLevel": "debug",

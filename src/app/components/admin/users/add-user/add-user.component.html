@@ -1,0 +1,19 @@
+<div class="AddUserComponent">
+  <h1>Adding an user</h1>
+  <md-input-container>
+    <input type="text" mdInput [(ngModel)]="user.name" placeholder="Name...">
+  </md-input-container>
+  <md-input-container>
+    <input type="text" mdInput [(ngModel)]="user.username" placeholder="Login...">
+  </md-input-container>
+  <md-input-container>
+    <input type="email" mdInput [(ngModel)]="user.email" placeholder="Email...">
+  </md-input-container>
+  <md-input-container>
+    <input type="password" mdInput [(ngModel)]="user.password" placeholder="Password...">
+  </md-input-container>
+
+  <button md-button (click)="addUser()" class="confirm">Add</button>
+  <button md-button (click)="dialogRef.close()">Cancel</button>
+
+</div>

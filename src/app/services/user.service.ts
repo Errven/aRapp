@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {HttpService} from "./http.service";
-import {Http} from "@angular/http";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class UserService {
 
-  urlLogin: string = 'https://stormy-ocean-60188.herokuapp.com/login';
-  constructor(private http: HttpService) { }
+  user: Subject<string> = new Subject<string>();
+
+  urlLogin: string = 'https://pacific-ocean-71911.herokuapp.com/login';
+  constructor(private http: HttpService) {
+    this.user.next(localStorage.getItem('user'));
+    console.log('test');
+  }
 
   userLogin(user): Observable<any>{
-    console.log('dupa');
-    return this.http.post(this.urlLogin, '{"username":"Philips7","password":"Dupa12345"}')
+    return this.http.post(this.urlLogin, user)
       .map(res => res.json());
   }
 }

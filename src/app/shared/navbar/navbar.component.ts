@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {any} from "codelyzer/util/function";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,13 @@ import {any} from "codelyzer/util/function";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() {
+  user: any;
+  constructor(private userService: UserService) {
+    this.user = localStorage.getItem('user');
+    this.userService.user.subscribe(user => {
+      this.user = user;
+      console.log(user);
+    })
   }
 
   ngOnInit() {
@@ -17,5 +24,9 @@ export class NavbarComponent implements OnInit {
   removeVideo() {
     if (document.querySelector('video'))
       document.querySelector('video').remove();
+  }
+
+  logout() {
+    this.userService.user.next(null);
   }
 }

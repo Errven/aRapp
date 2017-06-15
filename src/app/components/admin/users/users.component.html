@@ -1,55 +1,34 @@
 <section class="UsersComponent">
-  <h2>Users list</h2>
+  <h2>
+    Users list
+    <button md-mini-fab mdTooltip="Add new user" (click)="addUser();">
+      <md-icon md-list-icon>add</md-icon>
+    </button>
+  </h2>
 
   <md-card>
     <table class="table table-bordered">
       <thead>
       <tr>
+        <th>Login</th>
         <th>Name</th>
-        <th>Model</th>
+        <th>Email</th>
         <th class="right">More</th>
         <th class="right">Delete</th>
       </tr>
       </thead>
-      <tbody>
-      <tr>
-        <td>John</td>
-        <td>john@example.com</td>
+      <tbody *ngIf="users">
+      <tr *ngFor="let user of users">
+        <td>{{user.username}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
         <td>
           <button md-button mdTooltip="Edit user">
             <md-icon md-list-icon>info</md-icon>
           </button>
         </td>
         <td>
-          <button md-button mdTooltip="Delete user">
-            <md-icon md-list-icon>delete</md-icon>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>mary@example.com</td>
-        <td>
-          <button md-button mdTooltip="Edit user">
-            <md-icon md-list-icon>info</md-icon>
-          </button>
-        </td>
-        <td>
-          <button md-button mdTooltip="Delete user">
-            <md-icon md-list-icon>delete</md-icon>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>july@example.com</td>
-        <td>
-          <button md-button mdTooltip="Edit user">
-            <md-icon md-list-icon>info</md-icon>
-          </button>
-        </td>
-        <td>
-          <button md-button mdTooltip="Delete user">
+          <button md-button mdTooltip="Delete user" (click)="deleteUser(user.user_id)">
             <md-icon md-list-icon>delete</md-icon>
           </button>
         </td>

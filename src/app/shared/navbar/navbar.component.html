@@ -17,20 +17,16 @@
           <md-icon md-list-icon>camera</md-icon>
           <h3 md-line> Camera </h3>
         </md-list-item>
-        <md-list-item routerLinkActive="active" [routerLink]="'/settings'" (click)="sidenav.close(); removeVideo();">
-          <md-icon md-list-icon>settings</md-icon>
-          <h3 md-line> Settings </h3>
-        </md-list-item>
-        <md-list-item routerLinkActive="active" [routerLink]="'/admin'" (click)="sidenav.close(); removeVideo();">
+        <md-list-item routerLinkActive="active" *ngIf="user" [routerLink]="'/admin'" (click)="sidenav.close(); removeVideo();">
           <md-icon md-list-icon>settings</md-icon>
           <h3 md-line> Admin page </h3>
         </md-list-item>
         <hr/>
-        <md-list-item routerLinkActive="active" [routerLink]="'/login'" (click)="sidenav.close(); removeVideo();">
+        <md-list-item routerLinkActive="active" *ngIf="!user" [routerLink]="'/login'" (click)="sidenav.close(); removeVideo();">
           <md-icon md-list-icon>account_circle</md-icon>
           <h3 md-line> Login </h3>
         </md-list-item>
-        <md-list-item (click)="sidenav.close(); removeVideo();">
+        <md-list-item *ngIf="user" [routerLink]="'/'" (click)="sidenav.close(); removeVideo(); logout();">
           <md-icon md-list-icon>account_circle</md-icon>
           <h3 md-line> Logout </h3>
         </md-list-item>
